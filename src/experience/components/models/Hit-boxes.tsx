@@ -22,19 +22,18 @@ const HitBoxes: React.FC<React.ComponentProps<"group">> = (props) => {
         transparent: true,
         opacity: 0,
         depthWrite: false,
-        toneMapped: false,
+        // toneMapped: false,
       }),
     []
   );
 
-  // 💠 Glowing corners material
+  // 🔹 Glowing corners material (animated)
   const cornersMaterial = useMemo(
     () =>
       new MeshStandardMaterial({
-        color: "#daff47",
-        emissive: "#daff47",
-        emissiveIntensity: 4,
-        toneMapped: false,
+        color: "#ba0069",
+        emissive: "#ba0069",
+        emissiveIntensity: 1.5,
       }),
     []
   );

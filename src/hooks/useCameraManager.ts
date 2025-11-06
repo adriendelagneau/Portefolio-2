@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { useEffect, useCallback } from "react";
 import * as THREE from "three";
 
-import { interactiveObjects, introSettings } from "@/data/interactiveObjects";
+import { introSettings, interactiveObjects } from "@/data/interactiveObjects";
 import useCamera from "@/store/useCamera";
 import useInteractionStore from "@/store/useInteractionStore";
 import { useResponsiveStore } from "@/store/useResponsiveStore";
