@@ -7,6 +7,7 @@ import { BlendFunction, ToneMappingMode } from "postprocessing";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
+import CameraManager from "./components/CameraManager";
 import Scene from "./Scene";
 
 const Experience = () => {
@@ -45,6 +46,7 @@ const Experience = () => {
       />
 
       <Scene pointer={pointer} />
+      <CameraManager camera={cameraRef} />
 
       <EffectComposer>
         <ToneMapping

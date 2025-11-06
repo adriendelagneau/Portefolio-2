@@ -2,10 +2,10 @@ import { useFrame } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
 import * as THREE from "three";
 
-import Room_1 from "./models/Room-1";
-import Room_2 from "./models/Room-2";
-import Room_3 from "./models/Room-3";
-import Room_4 from "./models/Room-4";
+import Room_1 from "./components/models/Room-1";
+import Room_2 from "./components/models/Room-2";
+import Room_3 from "./components/models/Room-3";
+import Room_4 from "./components/models/Room-4";
 
 const Scene = ({ pointer }: { pointer: React.RefObject<THREE.Vector2> }) => {
   const groupRef = useRef<THREE.Group>(null!);
