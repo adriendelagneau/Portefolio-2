@@ -11,6 +11,7 @@ import { interactiveObjects } from "@/data/interactiveObjects";
 import useInteractionStore from "@/store/useInteractionStore";
 
 import CameraManager from "./components/CameraManager";
+import InteractionHandler from "./components/InteractionHandler";
 import Scene from "./Scene";
 
 const Experience = () => {
@@ -78,6 +79,7 @@ const Experience = () => {
 
       <Scene pointer={pointer} />
       <CameraManager camera={cameraRef} />
+      <InteractionHandler />
 
       <EffectComposer>
         <ToneMapping
