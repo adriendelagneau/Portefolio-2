@@ -44,9 +44,9 @@ const Scene = ({ pointer }: { pointer: React.RefObject<THREE.Vector2> }) => {
           {/* GridPlanes */}
           <GridPlanes
             ref={gridPlanesRef}
-            position={[-1, -1, -15]}
-            rows={20}
-            columns={20}
+            position={[-1, -2, -15]}
+            rows={22}
+            columns={22}
             planeWidth={2.5}
             planeDepth={2.5}
           />

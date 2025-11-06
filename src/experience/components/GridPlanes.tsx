@@ -22,6 +22,7 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
       emissiveIntensity: 0.4,
       transparent: true,
       opacity: 0,
+      depthWrite: false, // ✅ Prevent flicker when opacity transitions
       polygonOffset: true,
       polygonOffsetFactor: 1,
       polygonOffsetUnits: 1,
@@ -42,6 +43,7 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
       g: targetEmissiveObj.g,
       b: targetEmissiveObj.b,
       duration: 0.15,
+      ease: "power1.out",
     });
   }, [hovered]);
 
@@ -49,15 +51,18 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
     if (!meshRef.current || !meshRef.current.material) return;
 
     const targetOpacity = hovered ? 0.8 : 0;
-    const lerpFactor = hovered ? 0.5 : 0.15;
-
+    const lerpFactor = hovered ? 0.5 : 0.08; // ✅ smoother fade-out
     opacityRef.current = THREE.MathUtils.lerp(
       opacityRef.current,
       targetOpacity,
       lerpFactor
     );
-    (meshRef.current.material as THREE.MeshStandardMaterial).opacity =
-      opacityRef.current;
+
+    // ✅ Clamp minimum opacity to avoid flicker at 0
+    (meshRef.current.material as THREE.MeshStandardMaterial).opacity = Math.max(
+      opacityRef.current,
+      0.01
+    );
   });
 
   return (
