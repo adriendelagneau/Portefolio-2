@@ -4,7 +4,7 @@ import * as THREE from "three";
 
 import useInteractionStore from "@/store/useInteractionStore";
 
-import HitBoxes from "./components/models/Boxes1";
+import HitBoxes from "./components/models/Hit-boxes";
 import Room_1 from "./components/models/Room-1";
 import Room_2 from "./components/models/Room-2";
 import Room_3 from "./components/models/Room-3";
