@@ -136,7 +136,7 @@ const Room_4: React.FC<React.ComponentProps<"group">> = (props) => {
             rotation={node.rotation}
           >
             {hoveredObjectName?.toLowerCase() === name.toLowerCase() && (
-              <Outlines thickness={5} color="#b5d8ff" />
+              <Outlines thickness={5} color="#ffe0c2" />
             )}
             <meshBasicMaterial map={bakedTexture} />
           </mesh>

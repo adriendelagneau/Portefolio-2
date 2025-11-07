@@ -7,6 +7,8 @@ import React, { useRef } from "react";
 import { InteractiveObject } from "@/data/interactiveObjects";
 import { textSplitter } from "@/utils/textSplitter";
 
+import { Button } from "../ui/button";
+
 interface SidebarContactProps {
   object: InteractiveObject;
 }
@@ -75,7 +77,7 @@ const SidebarContact: React.FC<SidebarContactProps> = ({ object }) => {
           {object.title}
           <span
             ref={underlineRef}
-            className="underline-span block h-px origin-left scale-x-0 bg-blue-50"
+            className="underline-span bg-primary block h-px origin-left scale-x-0"
           ></span>
         </span>
       </h2>
@@ -86,7 +88,7 @@ const SidebarContact: React.FC<SidebarContactProps> = ({ object }) => {
       </p>
 
       {/* Download button */}
-      <button className="download-btn w-full rounded-lg bg-blue-600 py-3 font-medium text-white shadow-md transition-transform duration-200 hover:scale-[1.02] hover:bg-blue-700">
+      <Button className="download-btn w-full">
         <a
           href="/pdf/resume.pdf" // 👈 put your file in /public/CV.pdf
           download
@@ -94,7 +96,7 @@ const SidebarContact: React.FC<SidebarContactProps> = ({ object }) => {
         >
           Download CV
         </a>
-      </button>
+      </Button>
     </div>
   );
 };
