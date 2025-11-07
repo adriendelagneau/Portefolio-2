@@ -1,9 +1,11 @@
 "use client";
 
-import { useGLTF } from "@react-three/drei";
+import { Outlines, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import React, { useMemo, useRef } from "react";
 import * as THREE from "three";
+
+import useInteractionStore from "@/store/useInteractionStore";
 
 type GLTFResult = {
   nodes: { [name: string]: THREE.Mesh };
@@ -13,23 +15,23 @@ type GLTFResult = {
 const Room_4: React.FC<React.ComponentProps<"group">> = (props) => {
   const { nodes } = useGLTF("/models/room-4.glb") as unknown as GLTFResult;
 
-  // ✅ Create texture manually and memoize — no mutation!
+  const hoveredObjectName = useInteractionStore((state) => state.hoveredObject);
+
+  // 🧱 Baked texture
   const bakedTexture = useMemo(() => {
     const texture = new THREE.TextureLoader().load("/textures/room-4.jpg");
     texture.flipY = false;
     return texture;
   }, []);
 
-  // 🕒 Clock + smoke refs
+  // 🕒 Clock refs
   const hoursRef = useRef<THREE.Mesh>(null);
   const minutesRef = useRef<THREE.Mesh>(null);
   const secondsRef = useRef<THREE.Mesh>(null);
-  const smokeRef = useRef<THREE.Mesh>(null);
 
   // ⏱ Clock animation
   useFrame(() => {
     const date = new Date();
-
     const hours = date.getHours() % 12;
     const minutes = date.getMinutes();
     const seconds = date.getSeconds() + date.getMilliseconds() / 1000;
@@ -45,7 +47,7 @@ const Room_4: React.FC<React.ComponentProps<"group">> = (props) => {
       secondsRef.current.rotation.x = -(seconds * (Math.PI / 30));
   });
 
-  // 🖼 List of photo frame names
+  // 🖼 Photo frame names
   const photos = [
     "photo-1",
     "photo-2",
@@ -60,54 +62,69 @@ const Room_4: React.FC<React.ComponentProps<"group">> = (props) => {
   return (
     <group {...props} dispose={null}>
       {/* 🕰 Clock */}
-      <mesh
-        geometry={nodes.Clock.geometry}
-        position={[-3.966, 3.98, -1.421]}
-        rotation={[0, -0.77, 0]}
-        scale={1.224}
-      >
-        <meshBasicMaterial map={bakedTexture} />
-        <mesh ref={hoursRef} geometry={nodes.hours.geometry}>
-          <meshBasicMaterial map={bakedTexture} />
-        </mesh>
-        <mesh ref={minutesRef} geometry={nodes.minutes.geometry}>
-          <meshBasicMaterial map={bakedTexture} />
-        </mesh>
-        <mesh ref={secondsRef} geometry={nodes.secondes.geometry}>
-          <meshBasicMaterial map={bakedTexture} />
-        </mesh>
-      </mesh>
+      {nodes.Clock && (
+        <group
+          position={[-3.966, 3.98, -1.421]}
+          rotation={[0, -0.77, 0]}
+          scale={1.224}
+        >
+          <mesh geometry={nodes.Clock.geometry}>
+            <meshBasicMaterial map={bakedTexture} />
+          </mesh>
 
-      {/* 🐈 Schrödinger Mug */}
+          {nodes.hours && (
+            <mesh ref={hoursRef} geometry={nodes.hours.geometry}>
+              <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+          )}
+          {nodes.minutes && (
+            <mesh ref={minutesRef} geometry={nodes.minutes.geometry}>
+              <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+          )}
+          {nodes.secondes && (
+            <mesh ref={secondsRef} geometry={nodes.secondes.geometry}>
+              <meshBasicMaterial map={bakedTexture} />
+            </mesh>
+          )}
+        </group>
+      )}
+
+      {/* ☕ Schrödinger Mug */}
       {nodes.schrodinger && (
         <mesh
           geometry={nodes.schrodinger.geometry}
           position={[-0.299, 1.898, 2.997]}
-          rotation={[0, -0.486, 0]}
+          rotation={[0, -0.469, 0]}
         >
           <meshBasicMaterial map={bakedTexture} />
         </mesh>
       )}
 
-      {/* ☕ Coffee Smoke */}
+      {/* 🪞 Table Plane */}
+      {nodes.Plane040 && (
+        <mesh
+          geometry={nodes.Plane040.geometry}
+          position={[-0.588, 1.834, 2.989]}
+          scale={1.201}
+        >
+          <meshBasicMaterial map={bakedTexture} />
+        </mesh>
+      )}
+
+      {/* 💨 Coffee Smoke */}
       {nodes["coffe-smoke"] && (
         <mesh
           name="coffe-smoke"
-          ref={smokeRef}
           geometry={nodes["coffe-smoke"].geometry}
           position={[-0.312, 1.972, 2.997]}
           rotation={[0, -0.486, 0]}
         >
-          <meshBasicMaterial
-            map={bakedTexture}
-            transparent
-            opacity={0.8}
-            depthWrite={false}
-          />
+          <meshBasicMaterial map={bakedTexture} transparent opacity={0.5} />
         </mesh>
       )}
 
-      {/* 🖼 Photos on the wall (interactive) */}
+      {/* 🖼 Photos on the wall */}
       {photos.map((name) => {
         const node = nodes[name];
         if (!node) return null;
@@ -118,20 +135,13 @@ const Room_4: React.FC<React.ComponentProps<"group">> = (props) => {
             position={node.position}
             rotation={node.rotation}
           >
+            {hoveredObjectName?.toLowerCase() === name.toLowerCase() && (
+              <Outlines thickness={5} color="#b5d8ff" />
+            )}
             <meshBasicMaterial map={bakedTexture} />
           </mesh>
         );
       })}
-
-      {/* 🪞 Plane (table or wall prop) */}
-      {nodes.Plane040 && (
-        <mesh
-          geometry={nodes.Plane040.geometry}
-          position={[-0.571, 1.833, 2.988]}
-        >
-          <meshBasicMaterial map={bakedTexture} />
-        </mesh>
-      )}
     </group>
   );
 };
