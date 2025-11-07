@@ -38,8 +38,8 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json", // ✅ lien PWA
   icons: {
-    icon: "/icons/icon-192x192.png",
-    apple: "/icons/icon-192x192.png",
+    icon: "/icons/room-icon-192.png",
+    apple: "/icons/room-icon-192.png",
   },
 };
 
