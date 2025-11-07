@@ -98,7 +98,7 @@ const SidebarLibrary: React.FC<SidebarLibraryProps> = ({ object }) => {
           {object.title}
           <span
             ref={underlineRef}
-            className="underline-span block h-px origin-left scale-x-0 bg-blue-50"
+            className="underline-span bg-primary block h-px origin-left scale-x-0"
           ></span>
         </span>
       </h2>

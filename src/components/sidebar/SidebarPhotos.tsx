@@ -8,6 +8,8 @@ import { InteractiveObject, photoObjects } from "@/data/interactiveObjects";
 import useInteractionStore from "@/store/useInteractionStore";
 import { textSplitter } from "@/utils/textSplitter";
 
+import { Button } from "../ui/button";
+
 interface SidebarPhotosProps {
   object: InteractiveObject;
 }
@@ -76,7 +78,7 @@ const SidebarPhotos: React.FC<SidebarPhotosProps> = ({ object }) => {
           {object.title}
           <span
             ref={underlineRef}
-            className="underline-span block h-px origin-left scale-x-0 bg-blue-50"
+            className="underline-span bg-primary block h-px origin-left scale-x-0"
           ></span>
         </span>
       </h2>
@@ -89,11 +91,11 @@ const SidebarPhotos: React.FC<SidebarPhotosProps> = ({ object }) => {
       {/* Full-width animated buttons with links */}
       <div className="flex flex-col gap-2 pt-2">
         {photoObjects.map((photo, index) => (
-          <button
+          <Button
             key={index}
             onMouseEnter={() => setHoveredObject(photo.name)}
             onMouseLeave={() => setHoveredObject(null)}
-            className="photo-btn w-full rounded-lg bg-blue-600 py-3 font-medium text-white shadow-md transition-transform duration-200 hover:scale-[1.02] hover:bg-blue-700"
+            className="photo-btn w-full"
           >
             <a
               href={photo.url}
@@ -103,7 +105,7 @@ const SidebarPhotos: React.FC<SidebarPhotosProps> = ({ object }) => {
             >
               {photo.name} — {photo.websiteName}
             </a>
-          </button>
+          </Button>
         ))}
       </div>
     </div>

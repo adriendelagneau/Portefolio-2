@@ -31,7 +31,6 @@ const useInteractionStore = create<InteractionState>((set, get) => ({
 
   setClickedObject: (name) => {
     if (get().clickedObject === name) return; // ✅ prevents re-click camera twitch
-    console.log(name);
     set({ clickedObject: name });
   },
 

@@ -15,43 +15,40 @@ const NavPad = () => {
     >
       <div className="grid h-full w-full grid-cols-2 grid-rows-2 gap-1 lg:gap-2">
         <div
-          className="flex cursor-pointer items-center justify-center rounded-lg bg-zinc-900 transition hover:scale-110"
+          className="bg-card flex cursor-pointer items-center justify-center rounded-lg transition hover:scale-110"
           onClick={(e) => {
             e.stopPropagation(); // 👈 Prevent window click handler from firing
             setClickedObject("Library");
           }}
         >
-          <Library className="h-6 w-6 text-zinc-100 hover:text-white lg:h-7 lg:w-7 xl:h-8 xl:w-8" />
+          <Library className="text-secondary-foreground h-6 w-6 transition lg:h-7 lg:w-7 xl:h-8 xl:w-8" />
         </div>
         <div
-          className="flex cursor-pointer items-center justify-center rounded-lg bg-zinc-900 transition hover:scale-110"
+          className="bg-card flex cursor-pointer items-center justify-center rounded-lg transition hover:scale-110"
           onClick={(e) => {
             e.stopPropagation(); // 👈 Prevent window click handler from firing
             setClickedObject("Photos");
           }}
         >
-          <BriefcaseBusiness
-            size={24}
-            className="text-zinc-100 hover:text-white"
-          />
+          <BriefcaseBusiness size={24} className="text-secondary-foreground" />
         </div>
         <div
-          className="flex cursor-pointer items-center justify-center rounded-lg bg-zinc-900 transition hover:scale-110"
+          className="bg-card flex cursor-pointer items-center justify-center rounded-lg transition hover:scale-110"
           onClick={(e) => {
             e.stopPropagation(); // 👈 Prevent window click handler from firing
             setClickedObject("Mug");
           }}
         >
-          <Coffee size={24} className="text-zinc-100 hover:text-white" />
+          <Coffee size={24} className="text-secondary-foreground" />
         </div>
         <div
-          className="flex cursor-pointer items-center justify-center rounded-lg bg-zinc-900 transition hover:scale-110"
+          className="bg-card flex cursor-pointer items-center justify-center rounded-lg transition hover:scale-110"
           onClick={(e) => {
             e.stopPropagation(); // 👈 Prevent window click handler from firing
             setClickedObject("Monkey");
           }}
         >
-          <GiMonkey size={32} className="text-zinc-100 hover:text-white" />
+          <GiMonkey size={32} className="text-secondary-foreground" />
         </div>
       </div>
     </div>

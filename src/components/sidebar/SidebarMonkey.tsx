@@ -8,6 +8,8 @@ import { InteractiveObject } from "@/data/interactiveObjects";
 import { useMorphStore } from "@/store/useMorphStore";
 import { textSplitter } from "@/utils/textSplitter";
 
+import { Button } from "../ui/button";
+
 interface SidebarMonkeyProps {
   object: InteractiveObject;
 }
@@ -76,7 +78,7 @@ const SidebarMonkey: React.FC<SidebarMonkeyProps> = ({ object }) => {
           {object.title}
           <span
             ref={underlineRef}
-            className="underline-span block h-px origin-left scale-x-0 bg-blue-50"
+            className="underline-span bg-primary block h-px origin-left scale-x-0"
           ></span>
         </span>
       </h2>
@@ -86,12 +88,12 @@ const SidebarMonkey: React.FC<SidebarMonkeyProps> = ({ object }) => {
 
       {/* Buttons that will animate in after text */}
       <div className="flex gap-2 pt-2">
-        <button onClick={() => setTargetIndex(0)} className="btn">
+        <Button onClick={() => setTargetIndex(0)} className="btn">
           Three.JS
-        </button>
-        <button onClick={() => setTargetIndex(1)} className="btn">
+        </Button>
+        <Button onClick={() => setTargetIndex(1)} className="btn">
           Suzanne
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -52,7 +52,7 @@ const Experience = () => {
 
       <EffectComposer>
         <ToneMapping
-          blendFunction={BlendFunction.COLOR}
+          blendFunction={BlendFunction.SCREEN}
           mode={ToneMappingMode.ACES_FILMIC}
         />
       </EffectComposer>

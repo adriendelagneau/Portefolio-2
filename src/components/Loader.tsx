@@ -85,7 +85,7 @@ export default function Loader() {
     <div className="pointer-events-none fixed inset-0 z-50">
       <div
         ref={topRef}
-        className="absolute top-0 right-0 left-0 flex h-1/2 items-end justify-center bg-zinc-950"
+        className="bg-background absolute top-0 right-0 left-0 flex h-1/2 items-end justify-center"
       >
         <div
           className="relative h-[100px] w-[120px]"
@@ -131,7 +131,7 @@ export default function Loader() {
                   height={height - strokeWidth}
                   rx="6"
                   ry="6"
-                  stroke="#fff"
+                  stroke="#ffe0c2"
                   strokeWidth={strokeWidth}
                   fill="none"
                   strokeDasharray={perimeter}
@@ -140,7 +140,9 @@ export default function Loader() {
                   style={{ transition: "stroke-dashoffset 0.3s ease" }}
                 />
               </svg>
-              <span className="pointer-events-auto text-zinc-100">Loading</span>
+              <span className="bg-background text-secondary-foreground pointer-events-auto">
+                Loading
+              </span>
             </div>
 
             {/* BACK SIDE */}
@@ -155,9 +157,9 @@ export default function Loader() {
                 onClick={handleEnter}
                 disabled={!canEnter}
                 className={clsx(
-                  "pointer-events-auto h-full w-full rounded-md px-6 py-3 text-zinc-100 transition duration-300",
+                  "text-secondary-foreground pointer-events-auto h-full w-full rounded-md px-6 py-3 transition duration-300",
                   {
-                    "cursor-pointer border-2 border-zinc-100 opacity-100 hover:bg-zinc-100 hover:text-zinc-950":
+                    "border-secondary-foreground hover:bg-secondary-foreground hover:text-background cursor-pointer border-2 opacity-100":
                       canEnter,
                     "opacity-0": !canEnter,
                   }
@@ -172,7 +174,7 @@ export default function Loader() {
 
       <div
         ref={bottomRef}
-        className="absolute right-0 bottom-0 left-0 h-1/2 bg-zinc-950"
+        className="bg-background absolute right-0 bottom-0 left-0 h-1/2"
       />
     </div>
   );
