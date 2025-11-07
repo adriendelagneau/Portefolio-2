@@ -17,12 +17,11 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
 
   const material = useMemo(() => {
     return new THREE.MeshStandardMaterial({
-      color: "#ffffff", // light bluish-white
-      emissive: "#99d6ff", // subtle glowing blue
-      emissiveIntensity: 0.4,
+      color: "#ffe0c2", // light bluish-white
+      emissive: "#ffe0c2", // subtle glowing blue
+      emissiveIntensity: 0.78,
       transparent: true,
       opacity: 0,
-      depthWrite: false, // ✅ Prevent flicker when opacity transitions
       polygonOffset: true,
       polygonOffsetFactor: 1,
       polygonOffsetUnits: 1,
@@ -35,7 +34,7 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
     const material = meshRef.current.material as THREE.MeshStandardMaterial;
 
     // Change emissive color on hover
-    const targetEmissive = hovered ? "#cceeff" : "#99d6ff";
+    const targetEmissive = hovered ? "#ffe0c2" : "#ffe0c2";
     const targetEmissiveObj = new THREE.Color(targetEmissive);
 
     gsap.to(material.emissive, {
@@ -43,7 +42,6 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
       g: targetEmissiveObj.g,
       b: targetEmissiveObj.b,
       duration: 0.15,
-      ease: "power1.out",
     });
   }, [hovered]);
 
@@ -51,18 +49,15 @@ const Plane: React.FC<PlaneProps> = ({ position, planeDepth, planeWidth }) => {
     if (!meshRef.current || !meshRef.current.material) return;
 
     const targetOpacity = hovered ? 0.8 : 0;
-    const lerpFactor = hovered ? 0.5 : 0.08; // ✅ smoother fade-out
+    const lerpFactor = hovered ? 0.5 : 0.15;
+
     opacityRef.current = THREE.MathUtils.lerp(
       opacityRef.current,
       targetOpacity,
       lerpFactor
     );
-
-    // ✅ Clamp minimum opacity to avoid flicker at 0
-    (meshRef.current.material as THREE.MeshStandardMaterial).opacity = Math.max(
-      opacityRef.current,
-      0.01
-    );
+    (meshRef.current.material as THREE.MeshStandardMaterial).opacity =
+      opacityRef.current;
   });
 
   return (
