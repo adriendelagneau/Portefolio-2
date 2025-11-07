@@ -92,9 +92,6 @@ const SidebarMonkey: React.FC<SidebarMonkeyProps> = ({ object }) => {
         <button onClick={() => setTargetIndex(1)} className="btn">
           Suzanne
         </button>
-        <button onClick={() => setTargetIndex(2)} className="btn">
-          Pikatchu
-        </button>
       </div>
     </div>
   );
