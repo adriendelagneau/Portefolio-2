@@ -177,7 +177,7 @@ export const interactiveObjects: InteractiveObject[] = [
       {
         type: "text",
         content:
-          "Aujourd’hui, je travaille principalement avec Next.js, Tailwind CSS, shadcn/ui, GSAP et Three.js — un écosystème moderne que j’utilise pour concevoir des interfaces dynamiques, fluides et immersives.",
+          "Aujourd’hui, je travaille principalement avec un écosystème moderne que j’utilise pour concevoir des interfaces dynamiques, fluides et immersives.",
       },
       {
         type: "techList",

@@ -90,11 +90,11 @@ const SidebarContact: React.FC<SidebarContactProps> = ({ object }) => {
       {/* Download button */}
       <Button className="download-btn w-full">
         <a
-          href="/pdf/resume.pdf" // 👈 put your file in /public/CV.pdf
+          href="/pdf/visit-card.pdf"
           download
-          className="block w-full text-center"
+          className="block w-full text-center capitalize"
         >
-          Download CV
+          carte de visite
         </a>
       </Button>
     </div>
